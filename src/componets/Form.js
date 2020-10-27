@@ -35,7 +35,7 @@ function Formulario(props) {
   const dateConfig = {
     rules: [{ type: "object", required: true, message: "Please select time!" }],
   };
-  
+
   const config = {
     rules: [{ required: true, message: "No debe haber camppos vacios!" }],
   };
@@ -160,11 +160,11 @@ function Formulario(props) {
               <DatePicker placeholder="Fecha de nacimiento" />
             </Form.Item>
 
-            <Form.Item name="Sexo" label="Sexo" {...config}>
+            <Form.Item name="estadoCivil " label="Estado civil" {...config}>
               <Radio.Group>
                 <Radio value="a">Casado</Radio>
                 <Radio value="b">Soltero</Radio>
-                <Radio value="b">Union Libre</Radio>
+                <Radio value="c">Union Libre</Radio>
               </Radio.Group>
             </Form.Item>
           </Col>
