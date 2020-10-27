@@ -145,7 +145,7 @@ function Formulario(props) {
               <Input placeholder="apellido(s)" type="text" />
             </Form.Item>
 
-            <Form.Item name="Nacionalidad" label="Nacionalidad" {...dateConfig}>
+            <Form.Item name="Nacionalidad" label="Nacionalidad" {...config}>
               <Select placeholder="Seleccione su Nacionalidad" allowClear>
                 <Option value="Dominicana">Dominicana</Option>
                 <Option value="estadounidece">estado unidece</Option>
