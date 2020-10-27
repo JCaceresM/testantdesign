@@ -97,7 +97,7 @@ class Steper extends React.Component {
           )}
           {current > 0 && (
             <Button style={{ margin: "0 8px" }} onClick={() => this.prev()}>
-              Previous
+              Anterior
             </Button>
           )}
         </div>
