@@ -35,7 +35,7 @@ function Formulario(props) {
   const dateConfig = {
     rules: [{ type: "object", required: true, message: "Please select time!" }],
   };
-  
+
   const config = {
     rules: [{ required: true, message: "No debe haber camppos vacios!" }],
   };
