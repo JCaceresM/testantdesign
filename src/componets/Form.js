@@ -9,6 +9,7 @@ import {
   Button,
   Col,
   DatePicker,
+  Modal,
 } from "antd";
 const { Option } = Select;
 const formItemLayout = {
@@ -36,7 +37,13 @@ function Formulario(props) {
     console.log("Received values of form: ", values);
   };
   const [Edit, SetEditState] = useState(true);
-
+  const [visible, SetVisible] = useState(false);
+  const showModal = () => {
+    SetVisible(true);
+  };
+  const handleOk = () => {
+    SetVisible(false);
+  };
   return (
     <>
       <Divider orientation="left" value="j">
@@ -71,7 +78,7 @@ function Formulario(props) {
             </Form.Item>
 
             <Form.Item name="Nombre" label="Nombre" {...config}>
-              <Input placeholder="Nombre(s)" />
+              <Input placeholder="Nombre(s)" type="text" />
             </Form.Item>
 
             <Form.Item name="Apodo" label="Apodo">
@@ -82,7 +89,7 @@ function Formulario(props) {
               label="Lugar de nacimiento"
               {...config}
             >
-              <Input placeholder="Lugar de nacimiento" />
+              <Input placeholder="Lugar de nacimiento" type="text" />
             </Form.Item>
 
             <Form.Item name="Sexo" label="Sexo" {...config}>
@@ -119,11 +126,14 @@ function Formulario(props) {
                     ? "Seleciona un tipo de docuemento"
                     : "Escribe tu documento(cedula o pasaporte"
                 }
+                min={8}
+                max={11}
+                type="text"
               />
             </Form.Item>
 
             <Form.Item name="Apellido" label="Apellido" {...config}>
-              <Input placeholder="apellido(s)" />
+              <Input placeholder="apellido(s)" type="text" />
             </Form.Item>
 
             <Form.Item name="Nacionalidad" label="Nacionalidad" {...dateConfig}>
@@ -152,10 +162,29 @@ function Formulario(props) {
         </Row>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Next
+            Siguiente
           </Button>
         </Form.Item>
       </Form>
+
+      <Button
+        type="primary"
+        htmlType="submit"
+        style={{ float: "right" }}
+        onClick={() => showModal()}
+      >
+        + Agregar relacionado
+      </Button>
+      <Modal
+        title="Modal para saludar "
+        visible={visible}
+        onOk={handleOk}
+        okText="Cero"
+        onCancel={handleOk}
+        cancelText="mas, menos"
+      >
+        <p>Hola</p>
+      </Modal>
     </>
   );
 }
