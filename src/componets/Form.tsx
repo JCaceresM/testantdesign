@@ -25,37 +25,37 @@ const formItemLayout = {
     sm: { span: 16 },
   },
 };
+interface IFormProps {
+  validate: () => void;
+  next: () => void;
+}
 
-function Formulario(props) {
+function Formulario({ validate, next }: IFormProps): JSX.Element {
 
   const [form] = Form.useForm();
-  const [Edit, SetEditState] = useState(true);
-  const [visible, SetVisible] = useState(false);
-
-  const dateConfig = {
-    rules: [{ type: "object", required: true, message: "Please select time!" }],
-  };
+  const [Edit, SetEditState] = useState<boolean>(true);
+  const [visible, SetVisible] = useState<boolean>(false);
 
   const config = {
     rules: [{ required: true, message: "No debe haber camppos vacios!" }],
   };
 
-  const onFinish = (values) => {
-    props.next();
-    props.validate();
+  const onFinish = (values: Object): void  => {
+    next();
+    validate();
     console.log("Received values of form: ", values);
   };
-  
-  const showModal = () => {
+
+  const showModal = (): void  => {
     SetVisible(true);
   };
 
-  const handleOk = () => {
+  const handleOk = (): void  => {
     SetVisible(false);
   };
   return (
     <>
-      <Divider orientation="left" value="j">
+      <Divider orientation="left" >
         Datos Generales
       </Divider>
       <Form
@@ -77,12 +77,12 @@ function Formulario(props) {
             <Form.Item
               name="Elija su documento"
               label="Tipo de documento"
-              onClick={() => SetEditState(false)}
+
               {...config}
             >
               <Radio.Group>
-                <Radio value="a">Cedula</Radio>
-                <Radio value="b">Passaporte</Radio>
+                <Radio value="a" onClick={() => SetEditState(false)}>Cedula</Radio>
+                <Radio value="b" onClick={() => SetEditState(false)}>Passaporte</Radio>
               </Radio.Group>
             </Form.Item>
 
@@ -103,8 +103,8 @@ function Formulario(props) {
 
             <Form.Item name="Sexo" label="Sexo" {...config}>
               <Radio.Group>
-                <Radio value="a">Masculino</Radio>
-                <Radio value="b">Femenino</Radio>
+                <Radio value="Masculino">Masculino</Radio>
+                <Radio value="Femenino">Femenino</Radio>
               </Radio.Group>
             </Form.Item>
 
@@ -155,16 +155,16 @@ function Formulario(props) {
             <Form.Item
               name="Fecha de nacimiento"
               label="Fecha de nacimiento"
-              {...dateConfig}
+              {...config}
             >
               <DatePicker placeholder="Fecha de nacimiento" />
             </Form.Item>
 
             <Form.Item name="estadoCivil " label="Estado civil" {...config}>
               <Radio.Group>
-                <Radio value="a">Casado</Radio>
-                <Radio value="b">Soltero</Radio>
-                <Radio value="c">Union Libre</Radio>
+                <Radio value="Casado">Casado</Radio>
+                <Radio value="Soltero">Soltero</Radio>
+                <Radio value="UnionLibre">Union Libre</Radio>
               </Radio.Group>
             </Form.Item>
           </Col>

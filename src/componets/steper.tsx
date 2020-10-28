@@ -5,16 +5,20 @@ import Dev from "./devInprogress";
 import Formulario from "./Form";
 const { Step } = Steps;
 
-class Steper extends React.Component {
-  constructor(props) {
+interface IState {
+  current: number;
+  validate: boolean;
+}
+
+class Steper extends React.Component<any,IState> {
+  constructor(props:any) {
     super(props);
-    this.myRef = React.createRef();
     this.state = {
       current: 0,
       validate: false,
     };
   }
-  steps = [
+  steps=  [
     {
       title: "Datos Generales",
       subTitle: "Informacion Basica",
@@ -41,19 +45,19 @@ class Steper extends React.Component {
       content: <Dev></Dev>,
     },
   ];
-  next() {
+  next(): void {
     const current = this.state.current + 1;
     this.setState({ current });
   }
 
-  prev() {
+  prev(): void  {
     if (this.state.current === 1) {
       this.validate();
     }
     const current = this.state.current - 1;
     this.setState({ current });
   }
-  validate() {
+  validate(): void  {
     const validate = !this.state.validate;
     this.setState({ validate });
   }
@@ -64,7 +68,7 @@ class Steper extends React.Component {
 
     return (
       <>
-        <Steps current={current} ref={this.myRef}>
+        <Steps current={current} >
           {this.steps.map((item) => (
             <Step
               key={item.title}
@@ -83,7 +87,7 @@ class Steper extends React.Component {
               onClick={() => this.next()}
               style={{ display: this.state.validate ? "inline-block" : "none" }}
             >
-              Next
+              Siguiente
             </Button>
           )}
 
